@@ -1,0 +1,70 @@
+{
+  "admins": [
+    {
+      "id": "1",
+      "nom": "Admin1",
+      "email": "admin@hotel.com",
+      "password": "1234"
+    }
+  ],
+  "receptionistes": [
+    {
+      "id": "1",
+      "nom": "Recep1",
+      "email": "recep@hotel.com",
+      "password": "abcd",
+      "telephone": "0123456789",
+      "specialite": "Gestion"
+    }
+  ],
+  "clients": [
+    {
+      "id": "1",
+      "nom": "Jean Martin",
+      "email": "jean@client.com",
+      "password": "pass",
+      "telephone": "0678901234"
+    },
+    {
+      "id": "2",
+      "nom": "Marie Dupont",
+      "email": "marie@client.com",
+      "password": "azerty",
+      "telephone": "0765432109"
+    }
+  ],
+  "chambres": [
+    {
+      "id": "1",
+      "numero": "101",
+      "type": "Simple",
+      "prix": "80",
+      "disponible": true
+    },
+    {
+      "id": "2",
+      "numero": "102",
+      "type": "Double",
+      "prix": "120",
+      "disponible": false
+    }
+  ],
+  "reservations": [
+    {
+      "id": "1",
+      "dateDebut": "2025-09-10",
+      "dateFin": "2025-09-15",
+      "clientId": "1",
+      "chambreId": "1",
+      "etat": "en attente"
+    },
+    {
+      "id": "2",
+      "dateDebut": "2025-09-20",
+      "dateFin": "2025-09-25",
+      "clientId": "2",
+      "chambreId": "2",
+      "etat": "confirmé"
+    }
+  ]
+}
