@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     <h1>Mes Réservations</h1>
     <table>
       <thead>
-        <tr><th>Chambre</th><th>Date début</th><th>Date fin</th><th>État</th></tr>
+        <tr><th>Chambre</th><th>Date début</th><th>Date fin</th><th>État</th><th>Action</th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let r of myRes">
@@ -18,6 +18,9 @@ import { CommonModule } from '@angular/common';
           <td>{{ r.dateDebut }}</td>
           <td>{{ r.dateFin }}</td>
           <td>{{ r.etat }}</td>
+          <td>
+            <button *ngIf="r.etat === 'en attente'" (click)="cancelReservation(r)">Annuler</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,4 +38,12 @@ export class ClientDashboardComponent implements OnInit {
       this.myRes = d.filter(r => r.clientId === myId);
     });
   }
+
+  cancelReservation(r: any) {
+    this.http.patch(`${this.api}/reservations/${r.id}`, { etat: 'annulé' })
+      .subscribe(() => {
+        r.etat = 'annulé';
+      });
+  }
 }
+

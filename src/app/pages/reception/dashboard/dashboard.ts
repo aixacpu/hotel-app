@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     <h1>Dashboard Réceptionniste</h1>
     <table>
       <thead>
-        <tr><th>ID</th><th>Client</th><th>Chambre</th><th>Date début</th><th>Date fin</th><th>État</th></tr>
+        <tr><th>ID</th><th>Client</th><th>Chambre</th><th>Date début</th><th>Date fin</th><th>État</th><th>Action</th></tr>
       </thead>
       <tbody>
         <tr *ngFor="let r of reservations">
@@ -20,6 +20,10 @@ import { CommonModule } from '@angular/common';
           <td>{{ r.dateDebut }}</td>
           <td>{{ r.dateFin }}</td>
           <td>{{ r.etat }}</td>
+          <td>
+            <button (click)="updateReservation(r, 'confirmé')">Confirmer</button>
+            <button (click)="updateReservation(r, 'annulé')">Annuler</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -32,6 +36,14 @@ export class ReceptionDashboardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.http.get<any[]>(`${this.api}/reservations`).subscribe(d => this.reservations = d);
+  }
+
+  updateReservation(r: any, etat: string) {
+    this.http.patch(`${this.api}/reservations/${r.id}`, { etat }).subscribe(() => this.loadData());
   }
 }

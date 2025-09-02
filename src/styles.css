@@ -80,3 +80,14 @@ input {
 form {
   margin-bottom: 20px;
 }
+button {
+  margin-right: 6px;
+}
+
+button:nth-child(2) {
+  background: #dc2626; /* rouge pour Annuler */
+}
+
+button:nth-child(2):hover {
+  background: #b91c1c;
+}
